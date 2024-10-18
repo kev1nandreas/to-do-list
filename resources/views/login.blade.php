@@ -97,10 +97,6 @@
       </div>
       
     </div>
-    
-    <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
-  </form>
-
     <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
     
   </form>
