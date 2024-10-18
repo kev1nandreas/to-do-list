@@ -24,4 +24,4 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/register', [RegisterController::class, 'index']);
 
-Route::get('/logout', [LoginController::class, 'logout']);
+// Route::get('/logout', [LoginController::class, 'logout']);
