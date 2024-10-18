@@ -26,4 +26,3 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/register', [RegisterController::class, 'index']);
-
