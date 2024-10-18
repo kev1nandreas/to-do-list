@@ -86,7 +86,23 @@
       </label>
     </div>
     <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+    <div class="container-fluid">
+      <div class="row mt-3">
+        <label>
+          Don't have an account?
+        </label>
+      </div>
+      <div class="row mt-3">
+        <button class="btn btn-secondary w-100 py-2" type="submit">Sign Up</button>
+      </div>
+      
+    </div>
+    
     <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
+  </form>
+
+    <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
+    
   </form>
 </main>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
