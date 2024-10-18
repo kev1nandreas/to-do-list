@@ -20,10 +20,8 @@ Route::get('/login', function () {
 
 Route::post('/login', [LoginController::class, 'authenticate']);
 
-
-// Route::get('/logout', [LoginController::class, 'logout']);
+Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/register', [RegisterController::class, 'index']);
-
