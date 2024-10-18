@@ -19,4 +19,4 @@ Route::get('/login', function () {
 
 Route::post('/login', [LoginController::class, 'authenticate']);
 
-Route::get('/logout', [LoginController::class, 'logout']);
+// Route::get('/logout', [LoginController::class, 'logout']);
