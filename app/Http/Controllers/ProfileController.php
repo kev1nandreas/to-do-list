@@ -45,7 +45,7 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit()
     {
         return view('profile/edit', [
             'user' => auth()->user()
@@ -69,6 +69,32 @@ class ProfileController extends Controller
         User::where('id', $user->id)->update($validated);
 
         return redirect('/profile')->with('success', 'Data successfully updated');
+    }
+
+    public function editPass(){
+        return view('profile/changepassword', [
+            'user' => auth()->user()
+        ]);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $user = auth()->user();
+
+        $validated = $request->validate([
+            'password' => 'required',
+            'passwordconf' => 'required'
+        ]);
+
+        if ($validated['password'] !== $validated['passwordconf']) {
+            return;
+        }
+
+        $validated['password'] = bcrypt($validated['password']);
+
+        User::where('id', $user->id)->update(['password' => $validated['password']]);
+
+        return redirect('/profile')->with('success', 'Password successfully updated');
     }
 
     /**

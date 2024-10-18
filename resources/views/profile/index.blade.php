@@ -27,7 +27,7 @@
         <a href="/profile/{{ $user->username }}/edit" class="btn btn-outline-primary mt-6 w-[9.5rem]">Edit Profile</a>
     </div>
     <div class="inline-block ml-5">
-        <a href="/changePassword" class="btn btn-outline-danger mt-6 w-[9.5rem]">Change Password</a>
+        <a href="/profile/changepassword" class="btn btn-outline-danger mt-6 w-[9.5rem]">Change Password</a>
     </div>
 </div>
     

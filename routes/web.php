@@ -26,4 +26,8 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/register', [RegisterController::class, 'index']);
 
+Route::get('/profile/changepassword', [ProfileController::class, 'editpass']);
+
+Route::post('/profile/newpassword', [ProfileController::class, 'changePassword'])->name('profile.changePassword');;
+
 Route::resource('/profile', ProfileController::class)->middleware('auth');
