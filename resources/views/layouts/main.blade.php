@@ -5,14 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.122.0">
-    <title>Dashboard Template · Bootstrap v5.3</title>
+    <title>My To Do List</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
-
-    
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
 <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -206,14 +202,9 @@
 </svg>
 
 <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">My To Do List</a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="/">My To Do List</a>
 
   <ul class="navbar-nav flex-row d-md-none">
-    <li class="nav-item text-nowrap">
-      <button class="nav-link px-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle search">
-        <svg class="bi"><use xlink:href="#search"/></svg>
-      </button>
-    </li>
     <li class="nav-item text-nowrap">
       <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <svg class="bi"><use xlink:href="#list"/></svg>
@@ -227,7 +218,7 @@
 </header>
 
 <div class="container-fluid">
-  <div class="row">
+  <div class="row md:h-screen">
     <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
       <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
         <div class="offcanvas-header">
@@ -237,7 +228,7 @@
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="#">
+              <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/">
                 <svg class="bi"><use xlink:href="#house-fill"/></svg>
                 Dashboard
               </a>
@@ -248,9 +239,9 @@
 
           <ul class="nav flex-column mb-auto">
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <a class="nav-link d-flex align-items-center gap-2" href="/profile">
                 <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
-                Settings
+                Profile
               </a>
             </li>
             <li class="nav-item">
@@ -265,11 +256,9 @@
     </div>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
-      </div>
 
-      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+      @yield('container')
+
     </main>
   </div>
 </div>
