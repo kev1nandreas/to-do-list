@@ -31,7 +31,7 @@
 
 <body>
   <main class="form-signin w-100 m-auto">
-    <form method="POST" action="/register">
+    <form method="POST" action="/task">
       @csrf
       <img class="mb-4" src="/image/logo.png" alt="" width="72" height="57">
       <h1 class="h3 mb-3 fw-normal">Create a New Task</h1>
@@ -45,7 +45,7 @@
       <!-- Time Input (Tempus Dominus Datetime Picker) -->
       <div class="form-floating mb-3">
         <div class="input-group" id="datetimepicker">
-          <input type="text" class="form-control" placeholder="Select Date and Time" aria-label="Date and Time" />
+          <input type="text" name="due_date" class="form-control" placeholder="Select Date and Time" aria-label="Date and Time" />
           <span class="input-group-text">
             <i class="bi bi-calendar"></i>
           </span>

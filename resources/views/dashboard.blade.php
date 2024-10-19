@@ -6,7 +6,7 @@
         <h1 class="h2">Welcome {{ auth()->user()->name }}</h1>
     </div>
 
-    <a href="">
+    <a href="/task/create">
         <button type="button" class="btn btn-primary">Add New Task</button>
     </a>
     
