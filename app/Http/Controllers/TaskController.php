@@ -102,15 +102,19 @@ class TaskController extends Controller
      * Find the task with keyword.
     */
     public function find(Request $request){
-        $keyword = $request['keyword'];
+        $keyword = $request->input('keyword');
     
-        // Query the tasks using the relationship, not collection
-        $tasks = auth()->user()->tasks()
-            ->where('name', 'like', '%'.$keyword.'%')
-            ->orderBy('status', 'desc')
-            ->orderBy('due_date', 'desc')
-            ->get();
-    
+        $tasks = auth()->user()->tasks();
+        
+        if($keyword !== null){
+            $tasks = $tasks->where('name', 'like', '%'.$keyword.'%');
+        }
+
+        $tasks = $tasks->orderBy('status', 'desc')
+                       ->orderBy('due_date', 'desc')
+                       ->get();
+        
         return view('dashboard', ['tasks' => $tasks]);
     }
+    
 }

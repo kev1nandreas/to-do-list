@@ -35,7 +35,7 @@
         <form class="row g-3" method="GET" action="/find">
           <div class="col-auto">
             <label for="keyword" class="visually-hidden">Keyword</label>
-            <input type="text" name="keyword" class="form-control" id="keyword" placeholder="Type Keyword ...">
+            <input type="text" name="keyword" class="form-control" id="keyword" value="{{ request('keyword') }}" placeholder="Type Keyword ...">
           </div>
           <div class="col-auto">
             <button type="submit" class="btn btn-secondary mb-3">Search</button>
