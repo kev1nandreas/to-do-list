@@ -65,6 +65,14 @@
 
     
 <main class="form-signin w-100 m-auto">
+  
+  @if (session() -> has('loginError') )
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{session('loginError') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @endif
+
   <form method="POST" action="/login">
     @csrf
     <img class="mb-4" src="/image/todolist.png" alt="" width="72" height="57">
