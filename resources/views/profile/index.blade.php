@@ -1,6 +1,8 @@
 @extends('layouts.main')
 
 @section('container')
+
+<script src="https://cdn.tailwindcss.com"></script>
 <div class="w-[30rem]">
     <h1 class="mt-6 h1">{{ $user->name }}</h1>
 

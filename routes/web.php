@@ -11,11 +11,15 @@ Route::get('/', function () {
         return redirect('/login');
     }
 
-    return view('dashboard');
+    return view('dashboard', ['tasks' => auth()->user()->tasks->sortBy('due_date', SORT_REGULAR, true)->sortBy('status', SORT_REGULAR, true)]);
 });
 
 Route::get('/login', function () {
     return view('login');
+});
+
+Route::get('/debug', function () {
+    return view('test');
 });
 
 Route::post('/login', [LoginController::class, 'authenticate']);
