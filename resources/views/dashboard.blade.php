@@ -23,9 +23,26 @@
         <h1 class="h2">Welcome {{ auth()->user()->name }}</h1>
     </div>
 
-    <a href="/task/create">
-        <button type="button" class="btn btn-primary">Add New Task</button>
-    </a>
+    <div class="flex">
+      <div>
+        <a href="/task/create">
+          <button type="button" class="btn btn-primary">Add New Task</button>
+        </a>
+      </div>
+      
+
+      <div class="inline-block ml-10">
+        <form class="row g-3" method="GET" action="/find">
+          <div class="col-auto">
+            <label for="keyword" class="visually-hidden">Keyword</label>
+            <input type="text" name="keyword" class="form-control" id="keyword" placeholder="Type Keyword ...">
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-secondary mb-3">Search</button>
+          </div>
+        </form>
+      </div>
+    </div>
     
     <div class="overflow-scroll mt-3">
     <table class="table table-hover">

@@ -97,4 +97,20 @@ class TaskController extends Controller
 
         return redirect('/')->with('success', 'Task status changed successfully');
     }
+
+    /**
+     * Find the task with keyword.
+    */
+    public function find(Request $request){
+        $keyword = $request['keyword'];
+    
+        // Query the tasks using the relationship, not collection
+        $tasks = auth()->user()->tasks()
+            ->where('name', 'like', '%'.$keyword.'%')
+            ->orderBy('status', 'desc')
+            ->orderBy('due_date', 'desc')
+            ->get();
+    
+        return view('dashboard', ['tasks' => $tasks]);
+    }
 }
