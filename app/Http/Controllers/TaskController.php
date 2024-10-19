@@ -83,7 +83,9 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+
+        return redirect('/')->with('success', 'Task deleted successfully');
     }
 
     /**
@@ -94,5 +96,21 @@ class TaskController extends Controller
         $task->where('id', $task->id)->update(['status' => $task->status]);
 
         return redirect('/')->with('success', 'Task status changed successfully');
+    }
+
+    /**
+     * Find the task with keyword.
+    */
+    public function find(Request $request){
+        $keyword = $request['keyword'];
+    
+        // Query the tasks using the relationship, not collection
+        $tasks = auth()->user()->tasks()
+            ->where('name', 'like', '%'.$keyword.'%')
+            ->orderBy('status', 'desc')
+            ->orderBy('due_date', 'desc')
+            ->get();
+    
+        return view('dashboard', ['tasks' => $tasks]);
     }
 }
