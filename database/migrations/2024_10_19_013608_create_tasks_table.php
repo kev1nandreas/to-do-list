@@ -16,9 +16,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('name');
-            $table->date('due_date');
-            $table->text('description');
-            $table->string('category');
+            $table->date('due_date')->nullable();
+            $table->text('description')->nullable();
+            $table->string('category')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

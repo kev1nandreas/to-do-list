@@ -6,7 +6,7 @@
         <h1 class="h2">Welcome {{ auth()->user()->name }}</h1>
     </div>
 
-    <a href="">
+    <a href="/task/create">
         <button type="button" class="btn btn-primary">Add New Task</button>
     </a>
     
@@ -35,8 +35,8 @@
                 <td class="text-danger">Not Done</td>
             @endif
             <td>
-                <a href="/task/{{ $task }}/edit"><i class="inline-block" data-feather="edit"></i></a>
-                <a href=""><i class="inline-block" data-feather="check-circle"></i></a>
+                <a href="/task/{{ $task->id }}/edit"><i class="inline-block" data-feather="edit"></i></a>
+                <a href="/task/{{ $task->id }}/changestatus"><i class="inline-block" data-feather="check-circle"></i></a>
             </td>
           </tr>
         @endforeach
