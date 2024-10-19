@@ -2,6 +2,23 @@
 
 @section('container')
 
+<style>
+  .btn-transparent {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+}
+
+.d-inline {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+</style>
+
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Welcome {{ auth()->user()->name }}</h1>
     </div>
@@ -35,9 +52,17 @@
                 <td class="text-danger">Not Done</td>
             @endif
             <td>
-                <a href="/task/{{ $task->id }}/edit"><i class="inline-block" data-feather="edit"></i></a>
-                <a href="/task/{{ $task->id }}/changestatus"><i class="inline-block" data-feather="check-circle"></i></a>
-            </td>
+              <a href="/task/{{ $task->id }}/edit"><i class="inline-block" data-feather="edit"></i></a>
+              <a href="/task/{{ $task->id }}/changestatus"><i class="inline-block" data-feather="check-circle"></i></a>
+              <form action="/task/{{ $task->id }}" method="post" class="d-inline">
+                  @csrf
+                  @method('delete')
+                  <button type="submit" class="btn-transparent d-inline" onclick="return confirm('Are you sure?')">
+                      <i data-feather="trash-2"></i>
+                  </button>
+              </form>
+          </td>
+          
           </tr>
         @endforeach
         </tbody>
