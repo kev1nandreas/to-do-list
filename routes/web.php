@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
@@ -35,3 +36,5 @@ Route::get('/profile/changepassword', [ProfileController::class, 'editpass']);
 Route::post('/profile/newpassword', [ProfileController::class, 'changePassword'])->name('profile.changePassword');;
 
 Route::resource('/profile', ProfileController::class)->middleware('auth');
+
+Route::resource('/task', TaskController::class)->middleware('auth');
