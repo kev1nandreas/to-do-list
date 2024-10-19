@@ -63,59 +63,77 @@
       </ul>
     </div>
 
-    
-<main class="form-signin w-100 m-auto">
-  
-  @if (session() -> has('loginError') )
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    {{session('loginError') }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  @endif
+    <main class="form-signin w-100 m-auto">
+      <form method="POST" action="/login">
+        @csrf
+        <img class="mb-4" src="/image/todolist.png" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-  <form method="POST" action="/login">
-    @csrf
-    <img class="mb-4" src="/image/todolist.png" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <!-- Username input -->
+        <div class="form-floating">
+          <input type="text" name="username" 
+            class="form-control 
+            @error('username')
+                is-invalid
+            @enderror" 
+            id="floatingInput" placeholder="username" value="{{ old('username') }}">
+          <label for="floatingInput">Username</label>
 
-    <div class="form-floating">
-      <input type="text" name="username" 
-        class="form-control 
-        @error('username')
-            is-invalid
-        @enderror" 
-        id="floatingInput" placeholder="username">
-      <label for="floatingInput">Username</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-    </div>
+          @error('username')
+              <div class="invalid-feedback">
+                  {{ $message }}
+              </div>
+          @enderror
+        </div>
 
-    <div class="form-check text-start my-3">
-      <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-      <label class="form-check-label" for="flexCheckDefault">
-        Remember me
-      </label>
-    </div>
-    <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-  </form>
+        <!-- Password input -->
+        <div class="form-floating">
+          <input type="password" name="password" 
+            class="form-control
+            @error('password')
+                  is-invalid
+            @enderror" 
+            id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">Password</label>
 
-  <div class="container-fluid">
-    <div class="row mt-3">
-      <label>
-        Don't have an account?
-      </label>
-    </div>
-    <div class="row mt-3">
-      <a href="/register">
-        <button class="btn btn-secondary w-100 py-2" type="submit">Sign Up</button>
-      </a>
-    </div>
-  </div>
+          @error('password')
+              <div class="invalid-feedback">
+                  {{ $message }}
+              </div>
+          @enderror
+        </div>
 
-</main>
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Session login error -->
+        @if (session()->has('loginError') )
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ session('loginError') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
 
+        <div class="form-check text-start my-3">
+          <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Remember me
+          </label>
+        </div>
+        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+      </form>
+
+      <div class="container-fluid">
+        <div class="row mt-3">
+          <label>
+            Don't have an account?
+          </label>
+        </div>
+        <div class="row mt-3">
+          <a href="/register">
+            <button class="btn btn-secondary w-100 py-2" type="button">Sign Up</button>
+          </a>
+        </div>
+      </div>
+
+    </main>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
