@@ -37,7 +37,7 @@
 
     {{-- Name input --}}
     <div class="form-floating">
-      <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="floatingInput" placeholder="name" value="{{ old('name') }}">
+      <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="floatingInput" placeholder="name">
       <label for="floatingInput">Name</label>
       @error('name')
         <div class="invalid-feedback">{{ $message }}</div>
@@ -46,32 +46,29 @@
     
     {{-- Phone number input --}}
     <div class="form-floating">
-      <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" id="floatingInput" placeholder="phone number" value="{{ old('phone') }}">
+      <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" id="floatingInput" placeholder="phone number">
       <label for="floatingInput">Phone Number</label>
       @error('phone')
         <div class="invalid-feedback">{{ $message }}</div>
       @enderror
     </div>
     
-    {{-- Email input --}}
     <div class="form-floating">
-      <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="floatingInput" placeholder="email" value="{{ old('email') }}">
+      <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="floatingInput" placeholder="email">
       <label for="floatingInput">Email</label>
       @error('email')
         <div class="invalid-feedback">{{ $message }}</div>
       @enderror
     </div>
     
-    {{-- Username input --}}
     <div class="form-floating">
-      <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="floatingInput" placeholder="username" value="{{ old('username') }}">
+      <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="floatingInput" placeholder="username">
       <label for="floatingInput">Username</label>
       @error('username')
         <div class="invalid-feedback">{{ $message }}</div>
       @enderror
     </div>
     
-    {{-- Password input --}}
     <div class="form-floating">
       <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Password</label>
@@ -80,7 +77,13 @@
       @enderror
     </div>
     
+
     <button class="btn btn-primary w-100 py-2" type="submit">Register</button>
+    <br>
+
+    <a href="/login" class="btn btn-secondary w-100 py-2 mt-2">Back</a>
+
+
     <p class="mt-5 mb-3 text-body-secondary">&copy; 2017-2024</p>
   </form>
 </main>
