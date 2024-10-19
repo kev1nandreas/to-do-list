@@ -58,15 +58,24 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        return view('task/edit', ['task' => $task]);
+        return view('task/edittask', ['task' => $task]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(Request $request, Task $task)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'due_date' => 'required',
+        ]);
+
+        $validated['due_date'] = Carbon::parse($validated['due_date']);
+
+        $task->where('id', $task->id)->update($validated);
+
+        return redirect('/')->with('success', 'Task updated successfully');
     }
 
     /**
@@ -75,5 +84,15 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         //
+    }
+
+    /**
+     * Change the status of the task.
+     */
+    public function status(Task $task){
+        $task->status = !$task->status;
+        $task->where('id', $task->id)->update(['status' => $task->status]);
+
+        return redirect('/')->with('success', 'Task status changed successfully');
     }
 }

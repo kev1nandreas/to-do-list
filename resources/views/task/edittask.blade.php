@@ -31,21 +31,23 @@
 
 <body>
   <main class="form-signin w-100 m-auto">
-    <form method="POST" action="/register">
+    <form method="POST" action="/task/{{ $task->id }}">
       @csrf
+      @method('put')
+
       <img class="mb-4" src="/image/logo.png" alt="" width="72" height="57">
-      <h1 class="h3 mb-3 fw-normal">Create a New Task</h1>
+      <h1 class="h3 mb-3 fw-normal">Edit a Task</h1>
 
       <!-- Task Name Input -->
       <div class="form-floating mb-3">
-        <input type="text" name="name" class="form-control" id="taskName" placeholder="Task Name">
+        <input type="text" name="name" class="form-control" id="taskName" value="{{ $task->name }}" placeholder="Task Name">
         <label for="taskName">Task Name</label>
       </div>
 
       <!-- Time Input (Tempus Dominus Datetime Picker) -->
       <div class="form-floating mb-3">
         <div class="input-group" id="datetimepicker">
-          <input type="text" class="form-control" placeholder="Select Date and Time" aria-label="Date and Time" />
+          <input type="text" name="due_date" value="{{ $task->due_date }}" class="form-control" placeholder="Select Date and Time" aria-label="Date and Time" />
           <span class="input-group-text">
             <i class="bi bi-calendar"></i>
           </span>
@@ -54,16 +56,8 @@
 
       <!-- Description Input -->
       <div class="form-floating mb-3">
-        <input type="text" name="description" class="form-control" id="description" placeholder="">
-        <label for="description">Description (optional)</label>
-      </div>
-
-      <!-- Status Checkbox -->
-      <div class="form-check text-start my-3">
-        <input class="form-check-input" type="checkbox" value="status" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-          Status
-        </label>
+        <input type="text" name="description" value="{{ $task->description }}" class="form-control" id="description" placeholder="">
+        <label for="description">Description</label>
       </div>
 
       <!-- Submit Button -->

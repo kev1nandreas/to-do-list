@@ -38,3 +38,5 @@ Route::post('/profile/newpassword', [ProfileController::class, 'changePassword']
 Route::resource('/profile', ProfileController::class)->middleware('auth');
 
 Route::resource('/task', TaskController::class)->middleware('auth');
+
+Route::get('/task/{task}/changestatus', [TaskController::class, 'status'])->middleware('auth');
