@@ -89,35 +89,56 @@
       <img class="mb-4" src="/image/logo.png" alt="" width="72" height="57">
       <h1 class="h3 mb-3 fw-normal">Please Register</h1>
 
-      <div class="form-floating">
-        <input type="text" name="name" class="form-control" id="floatingInput" placeholder="name">
-        <label for="floatingInput">Name</label>
-      </div>
-      <div class="form-floating">
-        <input type="text" name="phone" class="form-control" id="floatingInput" placeholder="phone number">
-        <label for="floatingInput">Phone Number</label>
-      </div>
-      <div class="form-floating">
-        <input type="text" name="email" class="form-control" id="floatingInput" placeholder="email">
-        <label for="floatingInput">Email</label>
-      </div>
-      <div class="form-floating">
-        <input type="text" name="username" class="form-control" id="floatingInput" placeholder="username">
-        <label for="floatingInput">Username</label>
-      </div>
-      <div class="form-floating">
-        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-        <label for="floatingPassword">Password</label>
-      </div>
+      {{-- Name input --}}
+    <div class="form-floating">
+      <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="floatingInput" placeholder="name" value="{{ old('name') }}">
+      <label for="floatingInput">Name</label>
+      @error('name')
+        <div class="invalid-feedback">{{ $message }}</div>
+      @enderror
+    </div>
+    
+    {{-- Phone number input --}}
+    <div class="form-floating">
+      <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" id="floatingInput" placeholder="phone number" value="{{ old('phone') }}">
+      <label for="floatingInput">Phone Number</label>
+      @error('phone')
+        <div class="invalid-feedback">{{ $message }}</div>
+      @enderror
+    </div>
+    
+    {{-- Email input --}}
+    <div class="form-floating">
+      <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="floatingInput" placeholder="email" value="{{ old('email') }}">
+      <label for="floatingInput">Email</label>
+      @error('email')
+        <div class="invalid-feedback">{{ $message }}</div>
+      @enderror
+    </div>
+    
+    {{-- Username input --}}
+    <div class="form-floating">
+      <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="floatingInput" placeholder="username" value="{{ old('username') }}">
+      <label for="floatingInput">Username</label>
+      @error('username')
+        <div class="invalid-feedback">{{ $message }}</div>
+      @enderror
+    </div>
+    
+    {{-- Password input --}}
+    <div class="form-floating">
+      <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+      @error('password')
+        <div class="invalid-feedback">{{ $message }}</div>
+      @enderror
+    </div>
 
-      <div class="form-check text-start my-3">
-        <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-          Remember me
-        </label>
-      </div>
-      <button class="btn btn-primary w-100 py-2" type="submit">Register</button>
-      <p class="mt-5 mb-3 text-body-secondary">&copy; 2017-2024</p>
+    <button class="btn btn-primary w-100 py-2" type="submit">Register</button>
+    <br>
+    <a href="/login" class="btn btn-secondary w-100 py-2 mt-1">Back</a>
+    <p class="mt-5 mb-3 text-body-secondary">&copy; 2017-2024</p>
+
     </form>
   </main>
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
