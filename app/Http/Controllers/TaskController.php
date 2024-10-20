@@ -41,8 +41,6 @@ class TaskController extends Controller
         $validated['user_id'] = auth()->user()->id;
         $validated['due_date'] = Carbon::parse($validated['due_date']);
 
-        dd($validated);
-
         Task::create($validated);
 
         return redirect('/')->with('success', 'Task created successfully');
