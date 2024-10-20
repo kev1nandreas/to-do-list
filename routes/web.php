@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
@@ -11,7 +12,11 @@ Route::get('/', function () {
         return redirect('/login');
     }
 
-    return view('dashboard', ['tasks' => auth()->user()->tasks->sortBy('due_date', SORT_REGULAR, true)->sortBy('status', SORT_REGULAR, true)]);
+    return view('dashboard', [
+        'tasks' => auth()->user()->tasks
+            ->sortBy('due_date', SORT_REGULAR, false)
+            ->sortBy('status', SORT_REGULAR, false),
+        ]);
 });
 
 Route::get('/login', function () {
@@ -35,3 +40,9 @@ Route::get('/profile/changepassword', [ProfileController::class, 'editpass']);
 Route::post('/profile/newpassword', [ProfileController::class, 'changePassword'])->name('profile.changePassword');;
 
 Route::resource('/profile', ProfileController::class)->middleware('auth');
+
+Route::resource('/task', TaskController::class)->middleware('auth');
+
+Route::get('/task/{task}/changestatus', [TaskController::class, 'status'])->middleware('auth');
+
+Route::get('/find', [TaskController::class, 'find'])->middleware('auth');

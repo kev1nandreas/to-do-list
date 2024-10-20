@@ -10,19 +10,17 @@ class RegisterController extends Controller
 {
     public function store(Request $request)
     {
-        // dd($request->all());
         $validated = $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'username' => 'required',
-            'password' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10', 'unique:users,phone'],
+            'username' => 'required|unique:users,username',
+            'password' => 'required|min:8',
         ]);
 
         $validated['password'] = bcrypt($validated['password']);
 
         User::create($validated);
-
         return redirect('/login');
     }
 
