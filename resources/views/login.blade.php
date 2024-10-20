@@ -127,7 +127,7 @@
 
 
   <main class="form-signin w-100 m-auto">
-
+    
     <form method="POST" action="/login">
       @csrf
       <div class="image-border">
