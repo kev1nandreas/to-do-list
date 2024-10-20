@@ -12,7 +12,11 @@ Route::get('/', function () {
         return redirect('/login');
     }
 
-    return view('dashboard', ['tasks' => auth()->user()->tasks->sortBy('due_date', SORT_REGULAR, true)->sortBy('status', SORT_REGULAR, true)]);
+    return view('dashboard', [
+        'tasks' => auth()->user()->tasks
+            ->sortBy('due_date', SORT_REGULAR, false)
+            ->sortBy('status', SORT_REGULAR, false),
+        ]);
 });
 
 Route::get('/login', function () {
