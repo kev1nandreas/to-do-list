@@ -71,6 +71,7 @@ class TaskController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'due_date' => 'required',
+            'description' => 'nullable|string|max:255',
         ]);
 
         $validated['due_date'] = Carbon::parse($validated['due_date']);
