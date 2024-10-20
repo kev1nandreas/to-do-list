@@ -89,9 +89,12 @@
   <main class="form-signin w-100 m-auto">
     <form method="POST" action="/task">
       @csrf
+
       <img class="mb-4" src="/image/logo.png" alt="" width="72" height="57">
+
       <div class="form">
       <h1 class="h3 mb-3 fw-normal">Create a New Task</h1>
+
 
         <div class="form-floating mb-3">
           <input type="text" name="name" class="form-control" id="taskName" placeholder="Task Name">
@@ -107,10 +110,12 @@
           </div>
         </div>
 
-        <div class="form-floating mb-3">
-          <input type="text" name="description" class="form-control" id="description" placeholder="">
-          <label for="description">Description (optional)</label>
-        </div>
+
+      <!-- Description Input -->
+      <div class="form-floating mb-3">
+        <input type="text" name="description" class="form-control" id="description" placeholder="">
+        <label for="description">Description</label>
+      </div>
 
         <button class="btn btn-primary w-100 py-2" type="submit">Create Task</button>
     </form>
