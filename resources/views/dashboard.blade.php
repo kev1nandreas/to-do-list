@@ -29,9 +29,8 @@
           <button type="button" class="btn btn-primary">Add New Task</button>
         </a>
       </div>
-      
 
-      <div class="inline-block ml-10">
+      <div class="ml-10">
         <form class="row g-3" method="GET" action="/find">
           <div class="col-auto">
             <label for="keyword" class="visually-hidden">Keyword</label>

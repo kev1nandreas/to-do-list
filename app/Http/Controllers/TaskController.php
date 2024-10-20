@@ -110,8 +110,8 @@ class TaskController extends Controller
             $tasks = $tasks->where('name', 'like', '%'.$keyword.'%');
         }
 
-        $tasks = $tasks->orderBy('status', 'desc')
-                       ->orderBy('due_date', 'desc')
+        $tasks = $tasks->orderBy('status', 'asc')
+                       ->orderBy('due_date', 'asc')
                        ->get();
         
         return view('dashboard', ['tasks' => $tasks]);
