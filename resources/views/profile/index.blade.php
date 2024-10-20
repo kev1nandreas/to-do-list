@@ -24,6 +24,15 @@
             {{ $user->username }}
         </div>
     </div>
+    <div class="my-3">
+        <p>Password</p>
+        <div id="password-display" class="bg-slate-200 rounded-md p-2 px-4 mt-2" style="display: none;">
+            {{ $user->password }}
+        </div>
+        <button class="btn btn-outline-secondary mt-2" type="button" id="toggle-password-visibility">
+            <i data-feather="eye"></i>
+        </button>
+    </div>
 
     <div class="inline-block">
         <a href="/profile/{{ $user->username }}/edit" class="btn btn-outline-primary mt-6 w-[9.5rem]">Edit Profile</a>
@@ -32,5 +41,22 @@
         <a href="/profile/changepassword" class="btn btn-outline-danger mt-6 w-[9.5rem]">Change Password</a>
     </div>
 </div>
-    
+<script>
+    feather.replace();
+
+    document.getElementById('toggle-password-visibility').addEventListener('click', function() {
+        const passwordDisplay = document.getElementById('password-display');
+        const icon = this.querySelector('i');
+
+        // Toggle visibility
+        if (passwordDisplay.style.display === 'none') {
+            passwordDisplay.style.display = 'block';
+            icon.setAttribute('data-feather', 'eye-off');
+        } else {
+            passwordDisplay.style.display = 'none';
+            icon.setAttribute('data-feather', 'eye');
+        }
+        feather.replace();
+    });
+</script>
 @endsection

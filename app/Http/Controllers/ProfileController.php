@@ -87,7 +87,7 @@ class ProfileController extends Controller
         ]);
 
         if ($validated['password'] !== $validated['passwordconf']) {
-            return;
+            return redirect('/profile/changepassword')->with('error', 'Password and confirmation password do not match');
         }
 
         $validated['password'] = bcrypt($validated['password']);
