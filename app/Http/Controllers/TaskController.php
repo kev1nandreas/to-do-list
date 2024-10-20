@@ -35,11 +35,12 @@ class TaskController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'due_date' => 'required',
-            'description' => '',
+            'description' => 'nullable|string|max:255',
         ]);
 
         $validated['user_id'] = auth()->user()->id;
         $validated['due_date'] = Carbon::parse($validated['due_date']);
+        $validated['description'] = strip_tags($validated['description']);
 
         Task::create($validated);
 
