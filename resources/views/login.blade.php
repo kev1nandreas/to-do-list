@@ -12,51 +12,7 @@
   <link rel="preload" href="/image/background.jpg" as="image">
   <link rel="preload" href="/image/logo.png" as="image">
   <link rel="stylesheet" href="/css/sign-in.css">
-  <style>
-    body {
-      background-image: url('/image/background.jpg');
-    }
 
-    [data-bs-theme="dark"] body {
-      background-image: none;
-      background-color: black;
-    }
-
-    .form-signin {
-      background-color: #40E4D3;
-      padding: 2rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .form {
-      background-color: #CAFFDA;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    [data-bs-theme="dark"] .form-signin {
-      background-color: #202020;
-    }
-    [data-bs-theme="dark"] .form {
-      background-color: #303030;
-    }
-    [data-bs-theme="dark"] h1 {
-      color: white;
-    }
-    [data-bs-theme="dark"] .btn.btn-primary {
-      background-color: black;
-      border: none;
-    }
-    [data-bs-theme="dark"] .btn.btn-secondary {
-      background-color: white;
-      color: black;
-    }
-    [data-bs-theme="dark"] .label {
-      color: white;
-    }
-  </style>
 </head>
 
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
