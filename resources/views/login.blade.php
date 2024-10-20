@@ -9,11 +9,52 @@
   <meta name="description" content="">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <title>Login</title>
-
+  <link rel="preload" href="/image/background.jpg" as="image">
+  <link rel="preload" href="/image/logo.png" as="image">
   <link rel="stylesheet" href="/css/sign-in.css">
   <style>
     body {
       background-image: url('/image/background.jpg');
+    }
+
+    [data-bs-theme="dark"] body {
+      background-image: none;
+      background-color: black;
+    }
+
+    .form-signin {
+      background-color: #40E4D3;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .form {
+      background-color: #CAFFDA;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    [data-bs-theme="dark"] .form-signin {
+      background-color: #202020;
+    }
+    [data-bs-theme="dark"] .form {
+      background-color: #303030;
+    }
+    [data-bs-theme="dark"] h1 {
+      color: white;
+    }
+    [data-bs-theme="dark"] .btn.btn-primary {
+      background-color: black;
+      border: none;
+    }
+    [data-bs-theme="dark"] .btn.btn-secondary {
+      background-color: white;
+      color: black;
+    }
+    [data-bs-theme="dark"] .label {
+      color: white;
     }
   </style>
 </head>
@@ -86,86 +127,81 @@
 
 
   <main class="form-signin w-100 m-auto">
-    <!-- Session register success -->
-    @if (session()->has('registerSuccess'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('registerSuccess') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-
     
     <form method="POST" action="/login">
       @csrf
-      <img class="mb-4" src="/image/logo.png" alt="" width="72" height="57">
-      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+      <div class="image-border">
+        <img class="mb-4" src="/image/logo.png" alt="" width="72" height="57">
+      </div>
+      
 
-          <!-- Username input -->
+      <div class="form">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <!-- Username input -->
         <div class="form-floating">
-            <input type="text" name="username"
-              class="form-control 
+          <input type="text" name="username"
+            class="form-control 
             @error('username')
                 is-invalid
             @enderror"
-              id="floatingInput" placeholder="username" value="{{ old('username') }}">
-            <label for="floatingInput">Username</label>
-  
+            id="floatingInput" placeholder="username" value="{{ old('username') }}">
+          <label for="floatingInput">Username</label>
+
           @error('username')
-              <div class="invalid-feedback">
-                  {{ $message }}
-              </div>
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
           @enderror
         </div>
-  
+
         <!-- Password input -->
         <div class="form-floating">
-            <input type="password" name="password" 
+          <input type="password" name="password"
             class="form-control
             @error('password')
                   is-invalid
-            @enderror" 
+            @enderror"
             id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
-  
+          <label for="floatingPassword">Password</label>
+
           @error('password')
-              <div class="invalid-feedback">
-                  {{ $message }}
-              </div>
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
           @enderror
         </div>
 
         <!-- Session login error -->
         @if (session()->has('loginError') )
-          <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            {{ session('loginError') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{ session('loginError') }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         @endif
 
-          <div class="form-check text-start my-3">
-            <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Remember me
-            </label>
-          </div>
-          <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-        </form>
-
-        <div class="container-fluid">
-          <div class="row mt-3">
-            <label>
-              Don't have an account?
-            </label>
-          </div>
-          <div class="row mt-3">
-            <a href="/register">
-              <button class="btn btn-secondary w-100 py-2" type="button">Sign Up</button>
-            </a>
-          </div>
+        <div class="form-check text-start my-3">
+          <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Remember me
+          </label>
         </div>
+        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+    </form>
 
-      </main>
-      <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="container-fluid">
+      <div class="row mt-3">
+        <label>
+          Don't have an account?
+        </label>
+      </div>
+      <div class="row mt-3">
+      <button class="btn btn-secondary w-100 py-2" type="button" onclick="window.location.href='/register'">Sign Up</button>
+
+      </div>
+    </div>
+    </div>
+  </main>
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

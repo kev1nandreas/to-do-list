@@ -16,8 +16,6 @@
 
   .btn-transparent:hover {
     color: blue;
-
-    /* Adds a red glow effect */
   }
 
   .d-inline {
@@ -65,6 +63,17 @@
   .table-hover tbody td:nth-child(6) {
     background-color: #FFDBDB;
     justify-content: center;
+  }
+  [data-bs-theme="dark"] .table-hover tbody td{
+    background-color: #444;
+    border-color: black;
+  }
+  [data-bs-theme="dark"] .table-hover th {
+    background-color: gray;
+    border-color: black;
+  }
+  [data-bs-theme="dark"] .btn.btn-dark{
+    background-color: #343a40;
   }
 </style>
 
@@ -175,7 +184,7 @@
         }
 
         // Add your sorting logic here based on newOrder value
-        // Example: sortTable(button.id, newOrder);
+        
       });
     });
   });
