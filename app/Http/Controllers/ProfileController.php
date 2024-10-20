@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -80,22 +81,25 @@ class ProfileController extends Controller
     public function changePassword(Request $request)
     {
         $user = auth()->user();
-
         $validated = $request->validate([
-            'password' => 'required',
-            'passwordconf' => 'required'
+            'password' => 'required|min:8',
+            'passwordconf' => 'required|min:8'
         ]);
 
         if ($validated['password'] !== $validated['passwordconf']) {
             return redirect('/profile/changepassword')->with('error', 'Password and confirmation password do not match');
         }
 
+        if (Hash::check($validated['password'], $user->password)) {
+            return redirect('/profile/changepassword')->with('error', 'New password cannot be the same as the current password');
+        }
         $validated['password'] = bcrypt($validated['password']);
 
         User::where('id', $user->id)->update(['password' => $validated['password']]);
-
+        
         return redirect('/profile')->with('success', 'Password successfully updated');
     }
+
 
     /**
      * Remove the specified resource from storage.

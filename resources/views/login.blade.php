@@ -86,6 +86,14 @@
 
 
   <main class="form-signin w-100 m-auto">
+    <!-- Session register success -->
+    @if (session()->has('registerSuccess'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('registerSuccess') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
     
     <form method="POST" action="/login">
       @csrf

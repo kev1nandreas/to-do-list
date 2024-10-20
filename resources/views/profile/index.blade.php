@@ -6,6 +6,13 @@
 <div class="w-[30rem]">
     <h1 class="mt-6 h1">{{ $user->name }}</h1>
 
+    <!-- Display success message -->
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+    
     <div class="mt-3">
         <p>Phone Number</p>
         <div class="bg-slate-200 rounded-md p-2 px-4 mt-2">
