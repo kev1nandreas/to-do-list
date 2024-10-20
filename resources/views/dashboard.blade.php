@@ -189,6 +189,22 @@
     });
   });
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+  
+      const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+          v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+      )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+  
+      document.querySelectorAll('.sort-btn').forEach(button => button.addEventListener('click', () => {
+          const table = button.closest('table');
+          Array.from(table.querySelectorAll('tbody > tr'))
+              .sort(comparer(Array.from(button.parentNode.parentNode.children).indexOf(button.parentNode), this.asc = !this.asc))
+              .forEach(tr => table.querySelector('tbody').appendChild(tr) );
+      }));
+  });
+  </script>
 
 
 @endsection
