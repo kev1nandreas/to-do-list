@@ -9,11 +9,57 @@
   <meta name="description" content="">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <title>Register</title>
-
+  <link rel="preload" href="/image/background.jpg" as="image">
+  <link rel="preload" href="/image/logo.png" as="image">
   <link rel="stylesheet" href="/css/sign-in.css">
   <style>
     body {
       background-image: url('/image/background.jpg');
+    }
+
+    [data-bs-theme="dark"] body {
+      background-image: none;
+      background-color: black;
+    }
+
+    .form-signin {
+      background-color: #40E4D3;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .form {
+      background-color: #CAFFDA;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    [data-bs-theme="dark"] .form-signin {
+      background-color: #202020;
+    }
+
+    [data-bs-theme="dark"] .form {
+      background-color: #303030;
+    }
+
+    [data-bs-theme="dark"] h1 {
+      color: white;
+    }
+
+    [data-bs-theme="dark"] .btn.btn-primary {
+      background-color: black;
+      border: none;
+    }
+
+    [data-bs-theme="dark"] .btn.btn-secondary {
+      background-color: white;
+      color: black;
+    }
+
+    [data-bs-theme="dark"] .label {
+      color: white;
     }
   </style>
 </head>
@@ -87,59 +133,60 @@
     <form method="POST" action="/register">
       @csrf
       <img class="mb-4" src="/image/logo.png" alt="" width="72" height="57">
-      <h1 class="h3 mb-3 fw-normal">Please Register</h1>
+      <div class="form">
+        <h1 class="h3 mb-3 fw-normal">Please Register</h1>
 
-      {{-- Name input --}}
-    <div class="form-floating">
-      <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="floatingInput" placeholder="name" value="{{ old('name') }}">
-      <label for="floatingInput">Name</label>
-      @error('name')
-        <div class="invalid-feedback">{{ $message }}</div>
-      @enderror
-    </div>
-    
-    {{-- Phone number input --}}
-    <div class="form-floating">
-      <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" id="floatingInput" placeholder="phone number" value="{{ old('phone') }}">
-      <label for="floatingInput">Phone Number</label>
-      @error('phone')
-        <div class="invalid-feedback">{{ $message }}</div>
-      @enderror
-    </div>
-    
-    {{-- Email input --}}
-    <div class="form-floating">
-      <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="floatingInput" placeholder="email" value="{{ old('email') }}">
-      <label for="floatingInput">Email</label>
-      @error('email')
-        <div class="invalid-feedback">{{ $message }}</div>
-      @enderror
-    </div>
-    
-    {{-- Username input --}}
-    <div class="form-floating">
-      <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="floatingInput" placeholder="username" value="{{ old('username') }}">
-      <label for="floatingInput">Username</label>
-      @error('username')
-        <div class="invalid-feedback">{{ $message }}</div>
-      @enderror
-    </div>
-    
-    {{-- Password input --}}
-    <div class="form-floating">
-      <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-      @error('password')
-        <div class="invalid-feedback">{{ $message }}</div>
-      @enderror
-    </div>
+        {{-- Name input --}}
+        <div class="form-floating">
+          <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="floatingInput" placeholder="name" value="{{ old('name') }}">
+          <label for="floatingInput">Name</label>
+          @error('name')
+          <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+        </div>
 
-    <button class="btn btn-primary w-100 py-2" type="submit">Register</button>
-    <br>
-    <a href="/login" class="btn btn-secondary w-100 py-2 mt-1">Back</a>
-    <p class="mt-5 mb-3 text-body-secondary">&copy; 2017-2024</p>
+        {{-- Phone number input --}}
+        <div class="form-floating">
+          <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" id="floatingInput" placeholder="phone number" value="{{ old('phone') }}">
+          <label for="floatingInput">Phone Number</label>
+          @error('phone')
+          <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+        </div>
+
+        {{-- Email input --}}
+        <div class="form-floating">
+          <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="floatingInput" placeholder="email" value="{{ old('email') }}">
+          <label for="floatingInput">Email</label>
+          @error('email')
+          <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+        </div>
+
+        {{-- Username input --}}
+        <div class="form-floating">
+          <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="floatingInput" placeholder="username" value="{{ old('username') }}">
+          <label for="floatingInput">Username</label>
+          @error('username')
+          <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+        </div>
+
+        {{-- Password input --}}
+        <div class="form-floating">
+          <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+          @error('password')
+          <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+        </div>
+
+        <button class="btn btn-primary w-100 py-2" type="submit">Register</button>
+        <br>
+        <a href="/login" class="btn btn-secondary w-100 py-2 mt-1">Back</a>
 
     </form>
+    </div>
   </main>
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
