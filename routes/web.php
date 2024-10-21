@@ -6,6 +6,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Routing\Route as RoutingRoute;
 
 Route::get('/', function () {
@@ -23,15 +24,17 @@ Route::get('/', function () {
 
     $count = $tasks->filter(function ($task) {
         $dueDate = Carbon::parse($task->due_date);
-        return !$task->status && Carbon::now()->diffInDays($dueDate, false) <= 2;
+        return !$task->status && Carbon::now()->diffInDays($dueDate, false) <= auth()->user()->notify_before;
     })->count();
 
     $date2forward = now()->addDays(2)->format('l, d M Y');
+    $notification = auth()->user()->notify_me;
 
     return view('dashboard', [
         'tasks' => $tasks,
         'count' => $count,
-        'date2forward' => $date2forward
+        'date2forward' => $date2forward,
+        'notify' => $notification
     ]);
 });
 
@@ -58,6 +61,8 @@ Route::post('/profile/newpassword', [ProfileController::class, 'changePassword']
 Route::resource('/profile', ProfileController::class)->middleware('auth');
 
 Route::resource('/task', TaskController::class)->middleware('auth');
+
+Route::resource('/settings', SettingsController::class)->middleware('auth');
 
 Route::get('/task/{task}/changestatus', [TaskController::class, 'status'])->middleware('auth');
 

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('phone');
             $table->string('username')->unique();
             $table->string('password');
+            $table->boolean('notify_me')->default(1);
+            $table->integer('notify_before')->default(2);
             $table->rememberToken();
             $table->timestamps();
         });
