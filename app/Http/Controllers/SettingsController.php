@@ -59,7 +59,7 @@ class SettingsController extends Controller
     {
         $validated = $request->validate([
             'notify_me' => 'boolean',
-            'notify_before' => 'required|int|max:14',
+            'notify_before' => 'required|int|min:0|max:14',
         ]);
 
         $user->where('id', auth()->user()->id)->update($validated);

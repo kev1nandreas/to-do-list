@@ -10,7 +10,7 @@
         <div class="mb-3">
             <label for="notify_before" class="form-label">Remind Before</label>
             <input type="number" name="notify_before" class="form-control max-w-[10rem]" id="notify_before"
-                value={{ $user->notify_before }}>
+                value="{{ $user->notify_before }}" min="0" max="14">
         </div>
 
         <div class="mb-3 form-check">
