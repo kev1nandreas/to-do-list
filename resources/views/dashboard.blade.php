@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    @if ($count > 0)
+    @if ($count > 0 && $notify)
         <div class="alert alert-warning alert-dismissible fade show max-w-[35rem]" role="alert">
             You have {{ $count }} task(s) to do before {{ $date2forward }}.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
