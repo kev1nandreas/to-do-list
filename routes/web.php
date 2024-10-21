@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\LoginController;
@@ -12,11 +13,26 @@ Route::get('/', function () {
         return redirect('/login');
     }
 
+    $tasks = auth()->user()->tasks
+        ->sortBy('due_date', SORT_REGULAR, false)
+        ->sortBy('status', SORT_REGULAR, false)
+        ->map(function ($task) {
+            $task->time_to_due_date = Carbon::now()->diffForHumans(Carbon::parse($task->due_date));
+            return $task;
+        });
+
+    $count = $tasks->filter(function ($task) {
+        $dueDate = Carbon::parse($task->due_date);
+        return !$task->status && Carbon::now()->diffInDays($dueDate, false) <= 2;
+    })->count();
+
+    $date2forward = now()->addDays(2)->format('l, d M Y');
+
     return view('dashboard', [
-        'tasks' => auth()->user()->tasks
-            ->sortBy('due_date', SORT_REGULAR, false)
-            ->sortBy('status', SORT_REGULAR, false),
-        ]);
+        'tasks' => $tasks,
+        'count' => $count,
+        'date2forward' => $date2forward
+    ]);
 });
 
 Route::get('/login', function () {
