@@ -84,6 +84,11 @@ class ProfileController extends Controller
         $validated = $request->validate([
             'password' => 'required|min:8',
             'passwordconf' => 'required|min:8'
+        ],  [
+            'password.required' => 'Password is required.',
+            'password.min' => 'Password must be at least :min characters.',
+            'passwordconf.required' => 'Password confirmation is required.',
+            'passwordconf.min' => 'Password confirmation must be at least :min characters.'
         ]);
 
         if ($validated['password'] !== $validated['passwordconf']) {

@@ -84,12 +84,19 @@
 
   <main class="form-signin w-100 m-auto">
     
+     <!-- Session register success -->
+     @if (session()->has('registerSuccess'))
+     <div class="alert alert-success alert-dismissible fade show" role="alert">
+         {{ session('registerSuccess') }}
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+     </div>
+     @endif
+     
     <form method="POST" action="/login">
       @csrf
       <div class="image-border">
         <img class="mb-4" src="/image/logo.png" alt="" width="72" height="57">
       </div>
-      
 
       <div class="form">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
