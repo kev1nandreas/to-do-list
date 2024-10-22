@@ -1,7 +1,11 @@
 @extends('layouts.main')
 
 @section('container')
-
+<style>
+    [data-bs-theme="dark"] .bg-custom-dark {
+        color: black;
+    }
+</style>
 <script src="https://cdn.tailwindcss.com"></script>
 <div class="w-[30rem]">
     <h1 class="mt-6 h1">{{ $user->name }}</h1>
@@ -15,25 +19,25 @@
     
     <div class="mt-3">
         <p>Phone Number</p>
-        <div class="bg-slate-200 rounded-md p-2 px-4 mt-2">
+        <div class="bg-slate-200 rounded-md p-2 px-4 mt-2  bg-custom-dark">
             {{ $user->phone }}
         </div>
     </div>
     <div class="mt-3">
         <p>Email</p>
-        <div class="bg-slate-200 rounded-md p-2 px-4 mt-2">
+        <div class="bg-slate-200 rounded-md p-2 px-4 mt-2 bg-custom-dark">
             {{ $user->email }}
         </div>
     </div>
     <div class="my-3">
         <p>Username</p>
-        <div class="bg-slate-200 rounded-md p-2 px-4 mt-2">
+        <div class="bg-slate-200 rounded-md p-2 px-4 mt-2 bg-custom-dark">
             {{ $user->username }}
         </div>
     </div>
     <div class="my-3">
         <p>Password</p>
-        <div id="password-display" class="bg-slate-200 rounded-md p-2 px-4 mt-2" style="display: none;">
+        <div id="password-display" class="bg-slate-200 rounded-md p-2 px-4 mt-2 bg-custom-dark" style="display: none;">
             {{ $user->password }}
         </div>
         <button class="btn btn-outline-secondary mt-2" type="button" id="toggle-password-visibility">
@@ -49,8 +53,6 @@
     </div>
 </div>
 <script>
-    feather.replace();
-
     document.getElementById('toggle-password-visibility').addEventListener('click', function() {
         const passwordDisplay = document.getElementById('password-display');
         const icon = this.querySelector('i');
@@ -63,7 +65,7 @@
             passwordDisplay.style.display = 'none';
             icon.setAttribute('data-feather', 'eye');
         }
-        feather.replace();
+        
     });
 </script>
 @endsection
