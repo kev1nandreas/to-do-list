@@ -2,7 +2,7 @@
 <html lang="en" data-bs-theme="auto">
 
 <head>
-  <script src="../assets/js/color-modes.js"></script>
+  <script src="/assets/js/color-modes.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
@@ -97,17 +97,23 @@
 
         <!-- Task Name Input -->
         <div class="form-floating mb-3">
-          <input type="text" name="name" class="form-control" id="taskName" value="{{ $task->name }}" placeholder="Task Name">
+          <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="taskName" value="{{ $task->name }}" placeholder="Task Name">
           <label for="taskName">Task Name</label>
+          @error('name')
+              <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
         </div>
 
         <!-- Time Input (Tempus Dominus Datetime Picker) -->
         <div class="form-floating mb-3">
           <div class="input-group" id="datetimepicker">
-            <input type="text" name="due_date" value="{{ $task->due_date }}" class="form-control" placeholder="Select Date and Time" aria-label="Date and Time" />
+            <input type="text" name="due_date" value="{{ $task->due_date }}" class="form-control @error('due_date') is-invalid @enderror" placeholder="Select Date and Time" aria-label="Date and Time" />
             <span class="input-group-text">
               <i class="bi bi-calendar"></i>
             </span>
+            @error('due_date')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
           </div>
         </div>
 

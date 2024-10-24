@@ -79,11 +79,39 @@
             background-color: #343a40;
         }
     </style>
+
+    {{-- Session Info --}}
+     @if (session()->has('taskCreated'))
+     <div class="alert alert-success alert-dismissible fade show" role="alert">
+         {{ session('taskCreated') }}
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+     </div>
+     @endif
+     @if (session()->has('taskUpdated'))
+     <div class="alert alert-success alert-dismissible fade show" role="alert">
+         {{ session('taskUpdated') }}
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+     </div>
+     @endif
+     @if (session()->has('taskDeleted'))
+     <div class="alert alert-success alert-dismissible fade show" role="alert">
+         {{ session('taskDeleted') }}
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+     </div>
+     @endif
+     @if (session()->has('statusUpdated'))
+     <div class="alert alert-success alert-dismissible fade show" role="alert">
+         {{ session('statusUpdated') }}
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+     </div>
+     @endif
+
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Welcome {{ auth()->user()->name }}</h1>
     </div>
 
     <div class="flex">
+
         <div>
             <a href="/task/create">
                 <button type="button" class="btn btn-dark">Add New Task</button>

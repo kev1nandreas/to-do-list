@@ -59,18 +59,17 @@ class ProfileController extends Controller
     public function update(Request $request, User $user)
     {
         $user = auth()->user();
-
         $validated = $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'username' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,  // Exclude the current user's ID from the unique check
+            'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10', 'unique:users,phone,' . $user->id],  // Exclude current user's phone number
+            'username' => 'required|unique:users,username,' . $user->id,  // Exclude current user's username
         ]);
-
         User::where('id', $user->id)->update($validated);
 
         return redirect('/profile')->with('success', 'Data successfully updated');
     }
+
 
     public function editPass(){
         return view('profile/changepassword', [
