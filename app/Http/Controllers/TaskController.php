@@ -131,8 +131,17 @@ class TaskController extends Controller
         $tasks = $tasks->orderBy('status', 'asc')
                        ->orderBy('due_date', 'asc')
                        ->get();
+
+        $count = $tasks->filter(function ($task) {
+            $dueDate = Carbon::parse($task->due_date);
+            return !$task->status && Carbon::now()->diffInDays($dueDate, false) <= auth()->user()->notify_before;
+        })->count();
         
-        return view('dashboard', ['tasks' => $tasks]);
+        return view('dashboard', [
+            'tasks' => $tasks,
+            'count' => $count,
+            'notify' => auth()->user()->notify_me,
+            'date2forward' => now()->addDays(2)->format('l, d M Y')
+        ]);
     }
-    
 }
