@@ -30,22 +30,30 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+
+     
+     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required',
-            'due_date' => 'required',
+            'due_date' => 'required|date_format:"m/d/Y, h:i A"',
             'description' => 'nullable|string|max:255',
+        ],
+        [
+            'name.required' => 'Task name is required',
+            'due_date.required' => 'Due date is required',
+            'due_date.date_format' => 'Due date format is invalid'
         ]);
 
         $validated['user_id'] = auth()->user()->id;
-        $validated['due_date'] = Carbon::parse($validated['due_date']);
+        $validated['due_date'] = Carbon::createFromFormat('m/d/Y, h:i A', trim($validated['due_date']))->format('Y-m-d H:i:s');
         $validated['description'] = strip_tags($validated['description']);
 
+        // Create a new task with the validated data
         Task::create($validated);
-
-        return redirect('/')->with('success', 'Task created successfully');
+        return redirect('/')->with('taskCreated', 'Task created successfully');
     }
+     
 
     /**
      * Display the specified resource.
@@ -70,16 +78,23 @@ class TaskController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'due_date' => 'required',
+            'due_date' => 'required|date_format:"m/d/Y, h:i A"',
             'description' => 'nullable|string|max:255',
+        ],
+        [
+            'name.required' => 'Task name is required',
+            'due_date.required' => 'Due date is required',
+            'due_date.date_format' => 'Due date format is invalid'
         ]);
-
-        $validated['due_date'] = Carbon::parse($validated['due_date']);
+        $validated['user_id'] = auth()->user()->id;
+        $validated['due_date'] = Carbon::createFromFormat('m/d/Y, h:i A', trim($validated['due_date']))->format('Y-m-d H:i:s');
+        $validated['description'] = strip_tags($validated['description']);
 
         $task->where('id', $task->id)->update($validated);
-
-        return redirect('/')->with('success', 'Task updated successfully');
+        return redirect('/')->with('taskUpdated', 'Task updated successfully');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -88,7 +103,7 @@ class TaskController extends Controller
     {
         $task->delete();
 
-        return redirect('/')->with('success', 'Task deleted successfully');
+        return redirect('/')->with('taskDeleted', 'Task deleted successfully');
     }
 
     /**
@@ -98,7 +113,7 @@ class TaskController extends Controller
         $task->status = !$task->status;
         $task->where('id', $task->id)->update(['status' => $task->status]);
 
-        return redirect('/')->with('success', 'Task status changed successfully');
+        return redirect('/')->with('statusUpdated', 'Task status changed successfully');
     }
 
     /**

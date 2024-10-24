@@ -35,7 +35,7 @@
             {{ $user->username }}
         </div>
     </div>
-    <div class="my-3">
+    {{-- <div class="my-3">
         <p>Password</p>
         <div id="password-display" class="bg-slate-200 rounded-md p-2 px-4 mt-2 bg-custom-dark" style="display: none;">
             {{ $user->password }}
@@ -43,7 +43,7 @@
         <button class="btn btn-outline-secondary mt-2" type="button" id="toggle-password-visibility">
             <i data-feather="eye"></i>
         </button>
-    </div>
+    </div> --}}
 
     <div class="inline-block">
         <a href="/profile/{{ $user->username }}/edit" class="btn btn-outline-primary mt-6 w-[9.5rem]">Edit Profile</a>
@@ -52,7 +52,7 @@
         <a href="/profile/changepassword" class="btn btn-outline-danger mt-6 w-[9.5rem]">Change Password</a>
     </div>
 </div>
-<script>
+{{-- <script>
     document.getElementById('toggle-password-visibility').addEventListener('click', function() {
         const passwordDisplay = document.getElementById('password-display');
         const icon = this.querySelector('i');
@@ -67,5 +67,5 @@
         }
         
     });
-</script>
+</script> --}}
 @endsection

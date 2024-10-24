@@ -95,20 +95,28 @@
       <div class="form">
       <h1 class="h3 mb-3 fw-normal">Create a New Task</h1>
 
-
+        {{-- Task name input --}}
         <div class="form-floating mb-3">
-          <input type="text" name="name" class="form-control" id="taskName" placeholder="Task Name">
+          <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="taskName" placeholder="Task Name" value="{{ old('name') }}">
           <label for="taskName">Task Name</label>
+          @error('name')
+          <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
         </div>
 
+        {{-- Due date input --}}
         <div class="form-floating mb-3">
           <div class="input-group" id="datetimepicker">
-            <input type="text" name="due_date" class="form-control" placeholder="Select Date and Time" aria-label="Date and Time" />
-            <span class="input-group-text">
-              <i class="bi bi-calendar"></i>
-            </span>
+              <input type="text" name="due_date" class="form-control @error('due_date') is-invalid @enderror" placeholder="Select Date and Time" aria-label="Date and Time" value="{{ old('due_date') }}" />
+              <span class="input-group-text">
+                  <i class="bi bi-calendar"></i>
+              </span>
+              @error('due_date')
+              <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
           </div>
         </div>
+
 
 
       <!-- Description Input -->
