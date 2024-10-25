@@ -142,7 +142,10 @@
             calendar: true,
             clock: true,
           }
-        }
+        },
+        localization: {
+          locale: 'en-US',
+      }
       });
     });
   </script>
